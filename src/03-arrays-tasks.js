@@ -471,9 +471,11 @@ function sortCitiesArray(arr) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(n) {
+function getIdentityMatrix(/* n */) {
+  throw new Error('Not implemented');
   //  prettier-ignore
-  return Array.from({ length: n }, (_, i) => Array.from({ length: n }, (__, j) => (i === j ? 1 : 0)));
+  // return Array.from({ length: n }, (_, i) => Array.from({ length: n },
+  //  (__, j) => (i === j ? 1 : 0)));
 }
 
 // console.log(getIdentityMatrix(5));
