@@ -560,7 +560,7 @@ function group(/* array, keySelector, valueSelector */) {
 function selectMany(arr, childrenSelector) {
   return arr.reduce(
     (result, current) => result.concat(childrenSelector(current)),
-    []
+    [],
   );
 }
 
@@ -606,20 +606,23 @@ function getElementByIndexes(arr, indexes) {
  */
 function swapHeadAndTail(arr) {
   let res;
+  const tempArr = [];
   if (arr.length % 2 === 0) {
     res = arr.reduce((acc, num, i) => {
       if (i < arr.length / 2) acc.push(num);
-      if (i >= arr.length / 2) acc.unshift(num);
-      return acc;
+      if (i >= arr.length / 2) tempArr.push(num);
+      return (acc);
     }, []);
+    return tempArr.concat(res);
   }
   if (arr.length % 2 !== 0) {
     res = arr.reduce((acc, num, i) => {
       if (i < arr.length / 2 - 1) acc.push(num);
       if (i === Math.floor(arr.length / 2)) acc.unshift(num);
-      if (i > arr.length / 2) acc.unshift(num);
+      if (i > arr.length / 2) tempArr.push(num);
       return acc;
     }, []);
+    return tempArr.concat(res);
   }
   return res;
 }
