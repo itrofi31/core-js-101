@@ -560,7 +560,7 @@ function group(/* array, keySelector, valueSelector */) {
 function selectMany(arr, childrenSelector) {
   return arr.reduce(
     (result, current) => result.concat(childrenSelector(current)),
-    [],
+    []
   );
 }
 
@@ -585,7 +585,7 @@ function getElementByIndexes(arr, indexes) {
   const nestedArr = arr[index];
   return getElementByIndexes(nestedArr, remainingIndexes);
 }
-// console.log( getElementByIndexes( [[1, 2], [3, 4], [5, 6]], [0,0] ) );
+
 /**
  * Swaps the head and tail of the specified array:
  * the head (first half) of array move to the end, the tail (last half) move to the start.
@@ -604,8 +604,24 @@ function getElementByIndexes(arr, indexes) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  let res;
+  if (arr.length % 2 === 0) {
+    res = arr.reduce((acc, num, i) => {
+      if (i < arr.length / 2) acc.push(num);
+      if (i >= arr.length / 2) acc.unshift(num);
+      return acc;
+    }, []);
+  }
+  if (arr.length % 2 !== 0) {
+    res = arr.reduce((acc, num, i) => {
+      if (i < arr.length / 2 - 1) acc.push(num);
+      if (i === Math.floor(arr.length / 2)) acc.unshift(num);
+      if (i > arr.length / 2) acc.unshift(num);
+      return acc;
+    }, []);
+  }
+  return res;
 }
 
 module.exports = {
